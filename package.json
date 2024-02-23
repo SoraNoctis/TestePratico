@@ -1,0 +1,33 @@
+{
+  "author": "Vinicius Costa Marques",
+  "bugs": {
+    "url": "https://github.com/SoraNoctis/TestePratico/issues"
+  },
+  "dependencies": {
+    "@fluentui/react-components": "^9",
+    "css-select": "^5.1.0",
+    "express": "^4.18.2",
+    "react": "^17",
+    "react-dom": "^17",
+    "react-scripts": "^5.0.1"
+  },
+  "description": "Avaliacao para Notre Dame",
+  "homepage": "https://github.com/SoraNoctis/TestePratico#readme",
+  "keywords": [
+    "Avaliacao",
+    "Teste",
+    "JS",
+    "Pratica"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "testepratico",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SoraNoctis/TestePratico.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
+}
