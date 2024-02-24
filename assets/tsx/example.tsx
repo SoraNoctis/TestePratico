@@ -1,4 +1,6 @@
 import * as React from "react";
+import * as ReactDOM from 'react-dom';
+
 import {
     makeStaticStyles,
     makeStyles,
@@ -36,6 +38,12 @@ import {
     CalendarLtrFilled,
     CalendarLtrRegular,
     ChevronRightRegular,
+    ClipboardPasteFilled,
+    ClipboardPasteRegular,
+    CutFilled,
+    CutRegular,
+    EditFilled,
+    EditRegular,
     MeetNowFilled,
     MeetNowRegular,
     SearchRegular,

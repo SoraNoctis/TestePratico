@@ -1,3 +1,17 @@
+import React from 'react';
+import { Input } from '@fluentui/react';
+
+function App() {
+  return (
+    <div className="App">
+      <h1>Meu Site</h1>
+      <Input placeholder="Digite algo aqui..." />
+    </div>
+  );
+}
+
+export default App;
+
 document.getElementById('contatoForm').addEventListener('submit', function (event) {
     event.preventDefault();
     // Pegue os valores dos campos do formulário

@@ -3,96 +3,136 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Agenda de Contatos</title>
     <link rel="" href=".\assets\css\style.css">
     <script type="module" src="https://unpkg.com/@fluentui/web-components"></script>
-    <style>
-        /* Adicione seu CSS aqui */
-    </style>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="assets/js/app.js"></script>
 </head>
 
-<body>
-    <h1>
-        <center>Agenda de Contatos</center>
-    </h1>
+<body id="root">
+    <div>
+        <h1>
+            <center>Agenda de Contatos</center>
+        </h1>
 
-    <hr>
+        <hr>
 
-    <div class="employee-form">
-        <form onsubmit="event.preventDefault(); onFormSubmit();" autocomplete="off">
-            <div>
-                <label>Nome *</label>
-                <label class="validation-error hide" id="nameValidationError">This field is required.</label>
-                <input type="text" name="" id="name" placeholder="Nome">
-            </div>
-            <div>
-                <label>Sobrenome *</label>
-                <label class="validation-error hide" id="secondNameValidationError">This field is required.</label>
-                <input type="text" name="" id="secondname" placeholder="Sobrenome">
-            </div>
-            <div>
-                <label>Telefone *</label>
-                <label class="validation-error hide" id="phoneValidationError">This field is required.</label>
-                <input type="tel" name="phone" id="Telefone" placeholder="Telefone">
-            </div>
-            <div>
-                <label>E-Mail *</label>
-                <label class="validation-error hide" id="emailValidationError">This field is required.</label>
-                <input type="email" name="email" id="" placeholder="E-Mail">
-            </div>
-            <div>
-                <label>Cidade *</label>
-                <label class="validation-error hide" id="cityValidationError">This field is required.</label>
-                <select type="city" name="City" id="cidade" placeholder="Cidade" title="Cidade">
-                    <option value="WIP">WIP</option>
-                </select>
-            </div>
-            <div>
-                <label>Estado *</label>
-                <label class="validation-error hide" id="stateValidationError">This field is required.</label>
-                <select type="state" name="State" id="estado" placeholder="Estado" title="Estado">
-                    <option value="WIP">WIP</option>
-                </select>
-            </div>
-            <div>
-                <label>Tipo da Conta *</label>
-                <label class="validation-error hide" id="accountType">This field is required.</label>
-                <select type="accountType" name="accountType" title="Selecione o Tipo de Conta">
-                    <option value="NULL">Selecione a categoria</option>
-                    <option value="aluno">Aluno</option>
-                    <option value="responsavel">Responsável</option>
-                    <option value="professor">Professor</option>
-                    <option value="funcionario">Funcionário</option>
-                    <option value="coordenador">Coordenador</option>
-                </select>
-            </div>
-
-            <h2>
-                <fluent-button type="submit">Adicionar Contato</fluent-button>
-            </h2>            
-
-        </form>
+        <div class="tabelaContatos">
+            <col1 class="vistaContatos">
+                <input type="text" placeholder="Pesquisar"/>
+                <center>
+                    <table class="list" id="listaContatos">
+                        <!-- Criar Função Filtro para os contatos -->
+                        <thead>
+                            <tr>
+                                <th>Imagem</th>
+                                <th>NomeCompleto</th>
+                                <!-- <th>Email</th> -->
+                                <th>Telefone</th>
+                                <!--<th>Cidade</th> -->
+                                <!-- <th>Estado</th> -->
+                                <th>Categoria(s)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- As linhas da tabela são adicionadas dinamicamente -->
+                        </tbody>
+                    </table>
+                </center>
+            </col1>
+        </div>
     </div>
 
-    <br />
-    <div class="employees-table">
-        <table class="list" id="employeeList">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome Completo</th>
-                    <th>Email</th>
-                    <th>Cidade</th>
-                    <th>Estado</th>
-                    <th>Conta</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- As linhas da tabela serão adicionadas dinamicamente -->
-            </tbody>
-        </table>
-    </div>
-    <script src="assets/js/app.js"></script>
+    <main>
+        <div class="vistaSemiDetalhada">
+            <hgroup>
+                <!--
+                * Visão para Imagem de Perfil
+                * Visão das categorias
+                * Localidade de atuação
+                -->
+            </hgroup>
+        </div>
+
+        <div class="criarContato">
+            <hgroup> <!-- Criar Contato -->
+                <h2>
+                    <center>
+                        Criar Contato
+                    </center>
+                </h2>
+                <hr>
+            </hgroup>
+
+            <col2 class="formulario">
+                <center>
+                    <from onsubmit="event.preventDefault(); onFormSubmit();" autocomplete="off">
+                        <hgroup itemid="campoDeNome">
+                            <h3>Nome Completo</h3>
+                            <input id="completeName" type="text" name="NomeCompleto" maxlength="87"
+                                placeholder=" Digite o nome completo" required>
+                        </hgroup>
+                        <hgroup itemid="campoDeEmail">
+                            <h3>E-Mail</h3>
+                            <input id="email" type="email" name="E-Mail" maxlength="128"
+                                placeholder="Digite endereço de E-mail" required>
+                        </hgroup>
+                        <hgroup itemid="campoDeTelefone">
+                            <h3>Numero de Telefone</h3>
+                            <input id="phone" type="tel" name="Telefone" maxlength="24"
+                                placeholder="Digite o Numero de Telefone">
+                            <!-- Idealmente implementar uma forma de padronizar o numero "+XX (XX) X XXXX-XXXX" quando for selecionado -->
+                        </hgroup>
+                        <!-- Implementar opção de escolher a localidade -->
+                        <hgroup itemid="campoCidadeEstado">
+                            <h3>Cidade e Estado</h3>
+                            <select id="city" type="city" name="Cidade" maxlength="90" placeholder="A" title="Cidade">
+                                <option value="">Cidade</option>
+                            </select>
+                            <select id="state" type="state" name="Estado" maxlength="90" placeholder="A" title="Estado">
+                                <option value="">Estado</option>
+                            </select>
+                        </hgroup>
+                        <hgroup itemid="campoDeCategorias">
+                            <h3>Tipo da Conta</h3>
+                            <select id="accountType" type="select" name="Categorias" title="Selecione o Tipo de Conta"
+                                multiple required>
+                                <option value="Aluno">Aluno</option>
+                                <option value="Responsável">Responsável</option>
+                                <option value="Professor">Professor</option>
+                                <option value="Funcionário">Funcionário</option>
+                                <option value="Irmã">Irmã</option>
+                                <option value="Coordenador">Coordenador</option>
+                            </select>
+                            <!-- Se fosse desenvolvido mais a fundo faria isso apenas disponível para um usuário Coordenador ou Direção o qual for mais apropriado -->
+                            <!-- Validação um usuário não deve der nem uma permissão a mais do que aqueles abaixo de sua opção -->
+                            <h3>Nova Categoria</h3>
+                            <input type="text" id="nova-categoria" placeholder="Digite uma nova categoria">
+                            <fluent-button onclick="adicionarCategoria()">Adicionar</button>
+                        </hgroup>
+                        <!-- Tem muita coisa pra se fazer no momento vou apenas deixar na fila -->
+                        <hgroup itemid="campoImportarImagem">
+                            <h3>
+                                Importar Imagem
+                                <fieldset>
+                                    <h6>TODO</h6>
+                                </fieldset>
+                            </h3>
+                        </hgroup>
+                        <!-- Por enquanto fazer associação entre entidades em html/css/js vai além do que conheço -->
+                        <hgroup itemid="campoVincularUsuarios">
+                            <h3>Vinculo entre contas</h3>
+                            <textarea
+                                placeholder="Por enquanto fazer associação entre entidades em html/css/js vai além do que conheço"></textarea>
+                        </hgroup>
+                        <fluent-button type="submit">Adicionar Contato</fluent-button>
+                    </from>
+                </center>
+            </col2>
+        </div>
+
+    </main>
+
 
 </html>

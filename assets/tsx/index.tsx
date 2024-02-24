@@ -3,6 +3,7 @@ import { createDarkTheme, createLightTheme } from '@fluentui/react-components';
 
 import type { BrandVariants, Theme } from '@fluentui/react-components';
 import { Example } from './example';
+import React from 'react';
 
 const fluentNotreDame: BrandVariants = {
     10: "#020304",
