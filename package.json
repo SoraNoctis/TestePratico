@@ -1,33 +1,31 @@
 {
-  "author": "Vinicius Costa Marques",
-  "bugs": {
-    "url": "https://github.com/SoraNoctis/TestePratico/issues"
-  },
-  "dependencies": {
-    "@fluentui/react-components": "^9",
-    "css-select": "^5.1.0",
-    "express": "^4.18.2",
-    "react": "^17",
-    "react-dom": "^17",
-    "react-scripts": "^5.0.1"
-  },
-  "description": "Avaliacao para Notre Dame",
-  "homepage": "https://github.com/SoraNoctis/TestePratico#readme",
-  "keywords": [
-    "Avaliacao",
-    "Teste",
-    "JS",
-    "Pratica"
-  ],
-  "license": "ISC",
+  "name": "avaliacao",
+  "version": "1.0.0",
+  "description": "Processo Avaliativo",
   "main": "index.js",
-  "name": "testepratico",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SoraNoctis/TestePratico.git"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "keywords": [
+    "Teste",
+    "Avaliacao",
+    "JS",
+    "Fluent2",
+    "MS",
+    "Notre_Dame"
+  ],
+  "author": "Vinícius Costa Marques",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SoraNoctis/TestePratico/issues"
   },
-  "version": "1.0.0"
+  "homepage": "https://github.com/SoraNoctis/TestePratico#readme",
+  "dependencies": {
+    "@fluentui/web-components": "^2.5.16",
+    "express": "^4.18.2"
+  }
 }
