@@ -8,18 +8,22 @@ Teste Pratico de uma Agenda de Contatos
 * Tentativa de introduzir o design Fluent 2 Web
 * Procurando mais informações sobre JS
 
+* Refatorar código
+* Features de limite p/ segurança
+* Design básico no Figma
+
+|<https://www.figma.com/file/BGxEZ9DziKhQPNrDUWzvd4/Agenda-de-Contatos?type=design&node-id=0%3A1&mode=design&t=Bh2wuuHh5UByf5TB-1>|
+
+###### PS: Meu conhecimento de Figma está enferrujado mas gosto de design e gostaria de mexer mais nisso se possível
+
 ## O que precisa ser feito (não esta em ordem de prioridade)
 
-* Refatorar código
 * Estruturar o backend
-* Features de limite p/ segurança
 * Implementar esquema visual
-* Modo de visualizar o banco de dados
-* Design no Figma
 * Contactar Suporte (Amigos e Copilot)
 * Rezar para Santa Júlia Billiart
 
-### Nível de Ansiedade (aka coisas a muito importantes a fazer): ALTÍSSIMO
+### Nível de Ansiedade (aka coisas a muito importantes a fazer): Médio|Baixo
 
 * -> Criar toda interface;
 * -> Criar todo backend;

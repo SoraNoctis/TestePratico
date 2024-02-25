@@ -31,43 +31,43 @@
     </div>
 
     <main>
-        <!-- O cabeçalho contendo a imagem da pessoa visão via tags de seus cargos -->
+        <!-- O cabeçalho contendo a imagem da pessoa visão via tags de seus cargos 
         <div class="previewDetailUser">
             <hgroup>
-                <!--
-                * Visão para Imagem de Perfil
-                * Visão das categorias
-                * Localidade
-                -->
-            </hgroup>
-        </div>
+                 * Visão para Imagem de Perfil 
+                <img id="profileImage" src="" alt="Imagem de perfil">
+                 * Nome do usuário selecionado 
+                <p id="name"></p>
+                 * Visão das categorias 
+                <p id="categories"></p>
+                 * Localidade aka: Lugar onde trabalha 
+                </hgroup>
+            </div>
 
+            ~ Deixar isso de lado por enquanto vai além do escopo ~ 
+
+         -->
+        
         <!-- Fomulário contendo Nome, Telefone, Email, Cidade, Estado, Categoria 
             ~ Armazenar acrescentar imagens ainda está um pouco além do sou capaz de fazer por enquanto ~ 
         -->
         <form id="contactForm">
             <input type="hidden" name="id" />
             <label for="name">Nome:</label>
-            <input id="name" name="nome" type="text" minlength="2" maxlength="87" placeholder="Digite o nome completo"
-                aria-label="Nome completo" autocomplete="name" required />
+            <input id="name" name="nome" type="text" minlength="2" maxlength="87" placeholder="Digite o nome completo" aria-label="Nome completo" autocomplete="name" required />
             <!-- ~ Seria interessante futuramente padronizar a maneira com que é armazenado os contatos ex: +000 (000) 0 0000-0000 ~ -->
             <label for="phone">Telefone:</label>
-            <input id="phone" name="phone" type="tel" minlength="8" maxlength="26"
-                placeholder="Digite o numero do telefone" pattern="[0-9]{8,26}" aria-label="Seu telefone" autocomplete="tel" required />
+            <input id="phone" name="phone" type="tel" minlength="8" maxlength="26" placeholder="Digite o numero do telefone" pattern="[0-9]{8,26}" aria-label="Seu telefone" autocomplete="tel" required />
             <label for="email">E-Mail: </label>
             <!-- %% ERRO em Pattern attribute value %% precisaria ver com alguém que conhece mais para analisar isso -->
-            <input id="email" name="email" type="email" placeholder="Digite o Email"
-            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}" aria-label="Endereço de email" autocomplete="email" required />
+            <input id="email" name="email" type="email" placeholder="Digite o Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}" aria-label="Endereço de email" autocomplete="email" required />
             <!-- Menu Drop-down para Estado e Cidade  bem que queria mas por enquanto vamos no básico (*/ω＼*) -->
             <label for="city">Cidade:</label>
-            <input id="city" name="city" type="text" minlength="2" maxlength="90" placeholder="Digite a cidade"
-                aria-label="Cidade de moradia." required />
+            <input id="city" name="city" type="text" minlength="2" maxlength="90" placeholder="Digite a cidade" aria-label="Cidade de moradia." required />
             <label for="state">Estado:</label>
-            <input id="state" name="state" type="text" minlength="2" maxlength="90"
-                placeholder="Digite o estado de residencia" aria-label="Estado de sua residencia" required />
+            <input id="state" name="state" type="text" minlength="2" maxlength="90" placeholder="Digite o estado de residencia" aria-label="Estado de sua residencia" required />
             <label for="accountType">Tipo de Conta:</label>
-            <select id="accountType" name="accountType" type="text" multiple required
-                aria-label="Escolha as categorias aplicadas ao contato">
+            <select id="accountType" name="accountType" type="text" multiple required aria-label="Escolha as categorias aplicadas ao contato">
                 <option value="student">Aluno</option>
                 <option value="guardian">Responsável</option>
                 <option value="teacher">Professor</option>
@@ -78,101 +78,5 @@
             <button type="submit" value="save" aria-label="Confirmar gerenciamento">Adicionar</button>
         </form>
     </main>
+    <script src="./assets/js/index.js"></script>
 </body>
-
-<script>
-    let storedContacts = localStorage.getItem("contacts");
-    const contactList = storedContacts ? JSON.parse(storedContacts) : [];
-
-    const userForm = document.getElementById("contactForm");
-    const ulPersons = document.getElementById("contactList");
-
-    function saveList(list) {
-        localStorage.setItem("contacts", JSON.stringify(list));
-    }
-
-    userForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        let newPerson = {
-            name: this.name.value,
-            phone: this.phone.value,
-            city: this.city.value,
-            state: this.state.value,
-            email: this.email.value,
-            accountType: Array.from(this.accountType.selectedOptions).map(option => option.value)
-        };
-
-        if (this.id.value) {
-        // Editando um contato existente.
-        contactList[this.id.value] = newPerson;
-        } else {
-        // Adicionando um novo contato.
-            contactList.push(newPerson);
-        }
-
-        this.reset();
-
-        saveList(contactList);
-
-        listing();
-    })
-
-    function contactDelete(id) {
-        userForm.reset();
-        contactList.splice(id, 1);
-        saveList(contactList);
-        listing();
-    }
-
-    function contactEdit(id) {
-        userForm.id.value = id;
-        userForm.name.value = contactList[id].name;
-        userForm.phone.value = contactList[id].phone;
-        userForm.city.value = contactList[id].city;
-        userForm.state.value = contactList[id].state;
-        userForm.email.value = contactList[id].email;
-
-        Array.from(userForm.accountType.options).forEach(option => option.selected = false);
-
-        contactList[id].accountType.forEach(value => {
-            let option = Array.from(userForm.accountType.options).find(option => option.value === value);
-            if (option) option.selected = true;
-        });
-    }
-
-    function listing(filter = "") {
-        ulPersons.innerHTML = "";
-        contactList.forEach((element, index) => {
-            if (element.name.toUpperCase().indexOf(filter.toUpperCase()) >= 0 || filter == "") {
-                let line = document.createElement("li");
-                line.textContent = `Nome: ${element.name} Telefone: ${element.phone} E-Mail: ${element.email} Cidade: ${element.city} Estado: ${element.state} Acessos: ${element.accountType}`;
-
-                let deleteButton = document.createElement("button");
-                deleteButton.className = 'contactDelete';
-                deleteButton.dataset.index = index;
-                deleteButton.textContent = "[Excluir]";
-
-                let editButton = document.createElement("button");
-                editButton.className = 'contactEdit';
-                editButton.dataset.index = index;
-                editButton.textContent = "[Editar]";
-
-                line.appendChild(deleteButton);
-                line.appendChild(editButton);
-
-                ulPersons.appendChild(line);
-            }
-        });
-    }
-
-    ulPersons.addEventListener('click', function (e) {
-        if (e.target.classList.contains('contactEdit')) {
-            contactEdit(e.target.getAttribute('data-index'));
-        } else if (e.target.classList.contains('contactDelete')) {
-            contactDelete(e.target.getAttribute("data-index"));
-        }
-    });
-
-    listing();
-
-</script>
