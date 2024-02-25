@@ -1,0 +1,36 @@
+{
+  "name": "avaliacao",
+  "version": "1.0.0",
+  "description": "Processo Avaliativo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SoraNoctis/TestePratico.git"
+  },
+  "keywords": [
+    "Teste",
+    "Avaliacao",
+    "JS",
+    "Fluent2",
+    "MS",
+    "Notre_Dame"
+  ],
+  "author": "Vinícius Costa Marques",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SoraNoctis/TestePratico/issues"
+  },
+  "homepage": "https://github.com/SoraNoctis/TestePratico#readme",
+  "dependencies": {
+    "@fluentui/react": "^8.115.6",
+    "@fluentui/react-components": "^9.46.5",
+    "@fluentui/react-icons": "^2.0.230",
+    "@fluentui/scripts": "^0.44.0",
+    "@fluentui/web-components": "^2.5.16",
+    "create-react-app": "^5.0.1",
+    "express": "^4.18.2"
+  }
+}

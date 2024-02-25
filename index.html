@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Agenda de Contatos</title>
+</head>
+
+
+<body>
+    <!-- Para implementar a visualização Lateral dos Contatos -->
+    <!-- Um pouco de opinião pessoal nesse caso é proposital deixar apenas as tags e esconder o numero da pessoa até abrir o contato em sí-->
+    <div id="sidePannel">
+        <div>
+            <h1>
+                Agenda de Contatos
+            </h1>
+
+            <hr>
+
+        </div>
+
+        <div class="list">
+            <input id="search" type="text" placeholder="Pesquisar" onkeyup="listing(this.value)" ,
+                aria-label="Lista de Contatos" />
+            <ul id="contactList" aria-label="search">
+
+            </ul>
+        </div>
+    </div>
+
+    <main>
+        <!-- O cabeçalho contendo a imagem da pessoa visão via tags de seus cargos 
+        <div class="previewDetailUser">
+            <hgroup>
+                 * Visão para Imagem de Perfil 
+                <img id="profileImage" src="" alt="Imagem de perfil">
+                 * Nome do usuário selecionado 
+                <p id="name"></p>
+                 * Visão das categorias 
+                <p id="categories"></p>
+                 * Localidade aka: Lugar onde trabalha 
+                </hgroup>
+            </div>
+
+            ~ Deixar isso de lado por enquanto vai além do escopo ~ 
+
+         -->
+        
+        <!-- Fomulário contendo Nome, Telefone, Email, Cidade, Estado, Categoria 
+            ~ Armazenar acrescentar imagens ainda está um pouco além do sou capaz de fazer por enquanto ~ 
+        -->
+        <form id="contactForm">
+            <input type="hidden" name="id" />
+            <label for="name">Nome:</label>
+            <input id="name" name="nome" type="text" minlength="2" maxlength="87" placeholder="Digite o nome completo" aria-label="Nome completo" autocomplete="name" required />
+            <!-- ~ Seria interessante futuramente padronizar a maneira com que é armazenado os contatos ex: +000 (000) 0 0000-0000 ~ -->
+            <label for="phone">Telefone:</label>
+            <input id="phone" name="phone" type="tel" minlength="8" maxlength="26" placeholder="Digite o numero do telefone" pattern="[0-9]{8,26}" aria-label="Seu telefone" autocomplete="tel" required />
+            <label for="email">E-Mail: </label>
+            <!-- %% ERRO em Pattern attribute value %% precisaria ver com alguém que conhece mais para analisar isso -->
+            <input id="email" name="email" type="email" placeholder="Digite o Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}" aria-label="Endereço de email" autocomplete="email" required />
+            <!-- Menu Drop-down para Estado e Cidade  bem que queria mas por enquanto vamos no básico (*/ω＼*) -->
+            <label for="city">Cidade:</label>
+            <input id="city" name="city" type="text" minlength="2" maxlength="90" placeholder="Digite a cidade" aria-label="Cidade de moradia." required />
+            <label for="state">Estado:</label>
+            <input id="state" name="state" type="text" minlength="2" maxlength="90" placeholder="Digite o estado de residencia" aria-label="Estado de sua residencia" required />
+            <label for="accountType">Tipo de Conta:</label>
+            <select id="accountType" name="accountType" type="text" multiple required aria-label="Escolha as categorias aplicadas ao contato">
+                <option value="student">Aluno</option>
+                <option value="guardian">Responsável</option>
+                <option value="teacher">Professor</option>
+                <option value="employee">Funcionário</option>
+                <option value="coordinator">Coordenador</option>
+                <option value="sister">Irmã</option>
+            </select>
+            <button type="submit" value="save" aria-label="Confirmar gerenciamento">Adicionar</button>
+        </form>
+    </main>
+    <script src="./assets/js/index.js"></script>
+</body>
