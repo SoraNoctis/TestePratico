@@ -5,7 +5,7 @@ const contactList = storedContacts ? JSON.parse(storedContacts) : [];
 const userForm = document.getElementById("contactForm");
 const ulPersons = document.getElementById("contactList");
 
-// Manejando a visualização para Front
+// Mapeamento de tipos de conta
 const accountTypeMapping = {
     "student": "Aluno",
     "guardian": "Responsável",
@@ -15,11 +15,11 @@ const accountTypeMapping = {
     "sister": "Irmã"
 };
 
-// Adicionando botões excluir e deletar
+// Adicionando botões excluir e editar
 ulPersons.addEventListener('click', function (e) {
-    if (e.target.classList.contains('contactEdit')) {
-        contactEdit(e.target.getAttribute('data-index'));
-    } else if (e.target.classList.contains('contactDelete')) {
+    if (e.target.classList.contains("contactEdit")) {
+        contactEdit(e.target.getAttribute("data-index"));
+    } else if (e.target.classList.contains("contactDelete")) {
         contactDelete(e.target.getAttribute("data-index"));
     }
 });
@@ -33,31 +33,20 @@ userForm.addEventListener("submit", function (e) {
         city: this.city.value,
         state: this.state.value,
         email: this.email.value,
-        accountType: Array.from(this.accountType.selectedOptions).map(option => option.value)
+        accountType: Array.from(document.querySelectorAll('.tag.selected')).map(tag => tag.getAttribute('data-value'))
     };
-<<<<<<< Updated upstream
-
-=======
-    // Verificar se pelo menos uma tag foi selecionada
-    if (newPerson.accountType.length === 0) {
-        alert("Por favor, selecione pelo menos uma tag.");
-        return;
-    }
->>>>>>> Stashed changes
     if (this.id.value) {
-    // Editando um contato existente.
-    contactList[this.id.value] = newPerson;
+        // Editando um contato existente.
+        contactList[this.id.value] = newPerson;
     } else {
-    // Adicionando um novo contato.
+        // Adicionando um novo contato.
         contactList.push(newPerson);
     }
-
-    this.reset();
-
+    // Limpar o campo id
+    resetForm();
     saveList(contactList);
-
     listing();
-})
+});
 
 // Salvar a lista
 function saveList(list) {
@@ -66,9 +55,9 @@ function saveList(list) {
 
 // Remover o Contato selecionado
 function contactDelete(id) {
-    userForm.reset();
     contactList.splice(id, 1);
     saveList(contactList);
+    resetForm();
     listing();
 }
 
@@ -80,12 +69,12 @@ function contactEdit(id) {
     userForm.city.value = contactList[id].city;
     userForm.state.value = contactList[id].state;
     userForm.email.value = contactList[id].email;
-
-    Array.from(userForm.accountType.options).forEach(option => option.selected = false);
-
+    // Desmarcar todas as tags
+    document.querySelectorAll('.tag').forEach(tag => tag.classList.remove('selected'));
+    // Marcar as tags que correspondem aos tipos de conta do contato
     contactList[id].accountType.forEach(value => {
-        let option = Array.from(userForm.accountType.options).find(option => option.value === value);
-        if (option) option.selected = true;
+        let tag = Array.from(document.querySelectorAll('.tag')).find(tag => tag.getAttribute('data-value') === value);
+        if (tag) tag.classList.add('selected');
     });
 }
 
@@ -99,14 +88,14 @@ function listing(filter = "") {
             line.textContent = `Nome: ${element.name} Telefone: ${element.phone} E-Mail: ${element.email} Cidade: ${element.city} Estado: ${element.state} Acessos: ${accountTypes.join(", ")}`;
 
             let deleteButton = document.createElement("button");
-            deleteButton.className = 'contactDelete';
+            deleteButton.className = "contactDelete button-sidebar";
             deleteButton.dataset.index = index;
-            deleteButton.textContent = "[Excluir]";
+            deleteButton.textContent = "Excluir";
 
             let editButton = document.createElement("button");
-            editButton.className = 'contactEdit';
+            editButton.className = "contactEdit button-sidebar";
             editButton.dataset.index = index;
-            editButton.textContent = "[Editar]";
+            editButton.textContent = "Editar";
 
             line.appendChild(deleteButton);
             line.appendChild(editButton);
@@ -116,40 +105,37 @@ function listing(filter = "") {
     });
 }
 
-<<<<<<< Updated upstream
-listing();
-=======
 // Resetar o formulário e as tags
 function resetForm() {
     this.id.value = "";
     userForm.reset();
-    document.querySelectorAll(".tag").forEach(tag => tag.classList.remove("selected"));
+    document.querySelectorAll('.tag').forEach(tag => tag.classList.remove('selected'));
 }
 
-var tags = document.querySelectorAll(".tag");
-var select = document.getElementById("accountTypeSelect");
+var tags = document.querySelectorAll('.tag');
+var select = document.getElementById('accountTypeSelect');
 
-tags.forEach(function (tag) {
-    // Permitir a navegação com a tecla Tab
-    tag.setAttribute("tabindex", "0");
+tags.forEach(function(tag) {
+  // Permitir a navegação com a tecla Tab
+  tag.setAttribute('tabindex', '0');
 
-    // Adicionar ouvinte de evento de clique
-    tag.addEventListener("click", function () {
-        this.classList.toggle("selected");
-        var option = Array.from(select.options).find(option => option.value === this.getAttribute("data-value"));
-        if (option) option.selected = !option.selected;
-    });
+  // Adicionar ouvinte de evento de clique
+  tag.addEventListener('click', function() {
+    this.classList.toggle('selected');
+    var option = Array.from(select.options).find(option => option.value === this.getAttribute('data-value'));
+    if (option) option.selected = !option.selected;
+  });
 
-    // Adicionar ouvinte de evento de teclado para a tecla Enter e Espaço
-    tag.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault(); // Evita a rolagem da página ao pressionar a tecla Espaço
-            this.click(); // Aciona o evento de clique
-        }
-    });
+  // Adicionar ouvinte de evento de teclado para a tecla Enter e Espaço
+  tag.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault(); // Evita a rolagem da página ao pressionar a tecla Espaço
+      this.click(); // Aciona o evento de clique
+    }
+  });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function() {
     listing();
-});
->>>>>>> Stashed changes
+  });
+  

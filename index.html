@@ -4,15 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="./public/favicon.ico" />
+    <link rel="apple-touch-icon" href="./public/logo192.png" />
+    <link rel="stylesheet" href="./assets/css/theme.css">
     <title>Agenda de Contatos</title>
 </head>
 
-
 <body>
     <!-- Para implementar a visualização Lateral dos Contatos -->
-    <!-- Um pouco de opinião pessoal nesse caso é proposital deixar apenas as tags e esconder o numero da pessoa até abrir o contato em sí-->
-    <div id="sidePannel">
+    <!-- Um pouco de opinião pessoal nesse caso é proposital deixar apenas as tags e esconder o numero da pessoa até abrir o contato em sí -->
+    <div class="sidebar" id="sidePanel">
         <div>
+            <img class="contactBook" src="./public/logo192.png" alt="Logo Agenda de Contatos"/>
             <h1>
                 Agenda de Contatos
             </h1>
@@ -22,10 +25,10 @@
         </div>
 
         <div class="list">
-            <input id="search" type="text" placeholder="Pesquisar" onkeyup="listing(this.value)" ,
+            <input class="box input-fluent" id="search" type="text" placeholder="Pesquisar" onkeyup="listing(this.value)" ,
                 aria-label="Lista de Contatos" />
             <ul id="contactList" aria-label="search">
-
+                
             </ul>
         </div>
     </div>
@@ -52,30 +55,61 @@
             ~ Armazenar acrescentar imagens ainda está um pouco além do sou capaz de fazer por enquanto ~ 
         -->
         <form id="contactForm">
-            <input type="hidden" name="id" />
-            <label for="name">Nome:</label>
-            <input id="name" name="nome" type="text" minlength="2" maxlength="87" placeholder="Digite o nome completo" aria-label="Nome completo" autocomplete="name" required />
-            <!-- ~ Seria interessante futuramente padronizar a maneira com que é armazenado os contatos ex: +000 (000) 0 0000-0000 ~ -->
+            <input type="hidden" id="id" name="id" />
+            <div class="form-group">
+                <label for="name">Nome:</label>
+                <div>
+                  <input class="box input-fluent" id="name" name="nome" type="text" minlength="2" maxlength="87" placeholder="Digite o nome completo" aria-label="Nome completo" autocomplete="name" required />
+                </div>
+              </div>
+            <!-- Seria interessante futuramente padronizar a maneira com que é armazenado os contatos ex: +000 (000) 0 0000-0000 -->
+            <!-- ~ 4:18AM Eu ia fazer isso mas agora são  preciso ir dormir espero que todo esse esforço para fazer essa Agenda de Contatos valha a pena 
+                Queria poder validar o campo de forma direta mas isso se prova muito complicado sem ter um plugin ~
+            -->
             <label for="phone">Telefone:</label>
-            <input id="phone" name="phone" type="tel" minlength="8" maxlength="26" placeholder="Digite o numero do telefone" pattern="[0-9]{8,26}" aria-label="Seu telefone" autocomplete="tel" required />
-            <label for="email">E-Mail: </label>
+                <div>
+                    <input class="box input-fluent" id="phone" name="phone" type="tel" minlength="8" maxlength="18" placeholder="Digite o número do telefone" pattern="^\d{8,18}$" aria-label="Seu telefone" autocomplete="tel" required />
+                </div>
+            </div>
             <!-- %% ERRO em Pattern attribute value %% precisaria ver com alguém que conhece mais para analisar isso -->
-            <input id="email" name="email" type="email" placeholder="Digite o Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}" aria-label="Endereço de email" autocomplete="email" required />
+            <div class="form-group">
+                <label for="email">E-Mail:</label>
+                <div>
+                    <input class="box input-fluent" id="email" name="email" type="email" placeholder="Digite o Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$" aria-label="Endereço de email" autocomplete="email" required />
+                </div>
+            </div>
             <!-- Menu Drop-down para Estado e Cidade  bem que queria mas por enquanto vamos no básico (*/ω＼*) -->
-            <label for="city">Cidade:</label>
-            <input id="city" name="city" type="text" minlength="2" maxlength="90" placeholder="Digite a cidade" aria-label="Cidade de moradia." required />
-            <label for="state">Estado:</label>
-            <input id="state" name="state" type="text" minlength="2" maxlength="90" placeholder="Digite o estado de residencia" aria-label="Estado de sua residencia" required />
-            <label for="accountType">Tipo de Conta:</label>
-            <select id="accountType" name="accountType" type="text" multiple required aria-label="Escolha as categorias aplicadas ao contato">
-                <option value="student">Aluno</option>
-                <option value="guardian">Responsável</option>
-                <option value="teacher">Professor</option>
-                <option value="employee">Funcionário</option>
-                <option value="coordinator">Coordenador</option>
-                <option value="sister">Irmã</option>
-            </select>
-            <button type="submit" value="save" aria-label="Confirmar gerenciamento">Adicionar</button>
+            <div class="form-group inline">
+                <div>
+                  <label for="city">Cidade:</label>
+                  <input class="box input-fluent" id="city" name="city" type="text" minlength="2" maxlength="90" placeholder="Digite a cidade" aria-label="Cidade de moradia." required />
+                </div>
+                <div>
+                    <label for="state">Estado:</label>
+                    <input class="box input-fluent" id="state" name="state" type="text" minlength="2" maxlength="90" placeholder="Digite o estado de residencia" aria-label="Estado de sua residencia" required />
+                  </div>
+            </div>
+            <!-- ~ Tentativa de formatar isso como balões selecionáveis isso está a me deixar louco ~ -->
+            <div id="accountType" class="form-group">
+                <label for="accountTypeSelect">Tipo de Conta:</label>
+                <div class="tag-container">
+                  <div class="tag" data-value="student" tabindex="0">Aluno</div>
+                  <div class="tag" data-value="guardian" tabindex="1">Responsável</div>
+                  <div class="tag" data-value="teacher" tabindex="2">Professor</div>
+                  <div class="tag" data-value="employee" tabindex="3">Funcionário</div>
+                  <div class="tag" data-value="coordinator" tabindex="4">Coordenador</div>
+                  <div class="tag" data-value="sister" tabindex="5">Irmã</div>
+                </div>
+                <select id="accountTypeSelect" name="accountType" class="hidden-select" multiple style="display: none;">
+                    <option value="student" selected>Aluno</option>
+                    <option value="guardian">Responsável</option>
+                    <option value="teacher">Professor</option>
+                    <option value="employee">Funcionário</option>
+                    <option value="coordinator">Coordenador</option>
+                    <option value="sister">Irmã</option>
+                  </select>                                
+              </div>
+            <button class="button" type="submit" value="save" aria-label="Confirmar gerenciamento">Adicionar</button>
         </form>
     </main>
     <script src="./assets/js/index.js"></script>

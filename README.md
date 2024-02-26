@@ -16,18 +16,18 @@ Teste Pratico de uma Agenda de Contatos
 
 ###### PS: Meu conhecimento de Figma está enferrujado mas gosto de design e gostaria de mexer mais nisso se possível
 
-## O que precisa ser feito (não esta em ordem de prioridade)
-
 * Estruturar o backend
 * Implementar esquema visual
 * Contactar Suporte (Amigos e Copilot)
-* Rezar para Santa Júlia Billiart
 
-### Nível de Ansiedade (aka coisas a muito importantes a fazer): Médio|Baixo
+## O que precisa ser feito
 
-* -> Criar toda interface;
-* -> Criar todo backend;
-* -> Fazer testes;
-* -> Controlar a visão macro e dividir em pequenos pedaços digeríveis;
-* -> Manter o espirito calmo e bom com humor;
-* -> (●'◡'●)
+* CONCLUÍDO!
+
+### Coisas muito importantes
+
+* -> ✅ Criar toda interface;
+* -> ✅ Criar todo backend;
+* -> ✅ Fazer testes;
+* -> ✅ Controlar a visão macro e dividir em pequenos pedaços digeríveis;
+* -> 🤪 Manter o espirito calmo e bom com humor;
