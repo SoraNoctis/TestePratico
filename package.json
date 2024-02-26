@@ -1,6 +1,6 @@
 {
   "name": "avaliacao",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Processo Avaliativo",
   "main": "index.js",
   "scripts": {
@@ -26,11 +26,6 @@
   "homepage": "https://github.com/SoraNoctis/TestePratico#readme",
   "dependencies": {
     "@fluentui/react": "^8.115.6",
-    "@fluentui/react-components": "^9.46.5",
-    "@fluentui/react-icons": "^2.0.230",
-    "@fluentui/scripts": "^0.44.0",
-    "@fluentui/web-components": "^2.5.16",
-    "create-react-app": "^5.0.1",
     "express": "^4.18.2"
   }
 }
