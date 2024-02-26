@@ -35,7 +35,15 @@ userForm.addEventListener("submit", function (e) {
         email: this.email.value,
         accountType: Array.from(this.accountType.selectedOptions).map(option => option.value)
     };
+<<<<<<< Updated upstream
 
+=======
+    // Verificar se pelo menos uma tag foi selecionada
+    if (newPerson.accountType.length === 0) {
+        alert("Por favor, selecione pelo menos uma tag.");
+        return;
+    }
+>>>>>>> Stashed changes
     if (this.id.value) {
     // Editando um contato existente.
     contactList[this.id.value] = newPerson;
@@ -108,4 +116,40 @@ function listing(filter = "") {
     });
 }
 
+<<<<<<< Updated upstream
 listing();
+=======
+// Resetar o formulário e as tags
+function resetForm() {
+    this.id.value = "";
+    userForm.reset();
+    document.querySelectorAll(".tag").forEach(tag => tag.classList.remove("selected"));
+}
+
+var tags = document.querySelectorAll(".tag");
+var select = document.getElementById("accountTypeSelect");
+
+tags.forEach(function (tag) {
+    // Permitir a navegação com a tecla Tab
+    tag.setAttribute("tabindex", "0");
+
+    // Adicionar ouvinte de evento de clique
+    tag.addEventListener("click", function () {
+        this.classList.toggle("selected");
+        var option = Array.from(select.options).find(option => option.value === this.getAttribute("data-value"));
+        if (option) option.selected = !option.selected;
+    });
+
+    // Adicionar ouvinte de evento de teclado para a tecla Enter e Espaço
+    tag.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault(); // Evita a rolagem da página ao pressionar a tecla Espaço
+            this.click(); // Aciona o evento de clique
+        }
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    listing();
+});
+>>>>>>> Stashed changes
