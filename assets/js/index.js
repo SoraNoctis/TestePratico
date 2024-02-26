@@ -35,6 +35,11 @@ userForm.addEventListener("submit", function (e) {
         email: this.email.value,
         accountType: Array.from(document.querySelectorAll('.tag.selected')).map(tag => tag.getAttribute('data-value'))
     };
+    // Verificar se pelo menos uma tag foi selecionada
+    if (newPerson.accountType.length === 0) {
+        alert("Por favor, selecione pelo menos uma tag.");
+        return;
+    }
     if (this.id.value) {
         // Editando um contato existente.
         contactList[this.id.value] = newPerson;
